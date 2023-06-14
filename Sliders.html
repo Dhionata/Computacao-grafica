@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliders</title>
+</head>
+
+<body>
+    <p>Vermelho: <span id="valor_vermelho"></span></p>
+    <input type="range" step="0.01" min="0" max="1" value="0" id="slider_vermelho">
+
+    <p>Verde: <span id="valor_verde"></span></p>
+    <input type="range" step="0.01" min="0" max="1" value="0" id="slider_verde">
+
+    <p>Azul: <span id="valor_azul"></span></p>
+    <input type="range" step="0.01" min="0" max="1" value="0" id="slider_azul">
+
+    <p>Alfa: <span id="valor_alfa"></span></p>
+    <input type="range" step="0.01" min="0" max="1" value="0" id="slider_alfa">
+    <br>
+    <canvas id="glcanvas" width="640" height="480"></canvas>
+</body>
+
+<script>
+    function canvas() {
+        const canvas = document.getElementById("glcanvas");
+        const gl = canvas.getContext("webgl");
+        if (!gl) {
+            alert("Erro ao iniciar WebGl. Seu navegador ou PC não suporta");
+            return
+        }
+
+        gl.clearColor(valor_vermelho.innerHTML, valor_verde.innerHTML, valor_azul.innerHTML, valor_alfa.innerHTML);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+
+    //Sliders
+    var slider_vermelho = document.getElementById("slider_vermelho");
+    var valor_vermelho = document.getElementById("valor_vermelho");
+    valor_vermelho.innerHTML = slider_vermelho.value;
+
+    slider_vermelho.oninput = function () {
+        valor_vermelho.innerHTML = this.value;
+        canvas();
+    }
+
+
+    var slider_verde = document.getElementById("slider_verde");
+    var valor_verde = document.getElementById("valor_verde");
+    valor_verde.innerHTML = slider_verde.value;
+
+    slider_verde.oninput = function () {
+        valor_verde.innerHTML = this.value;
+        canvas();
+    }
+
+    var slider_azul = document.getElementById("slider_azul");
+    var valor_azul = document.getElementById("valor_azul");
+    valor_azul.innerHTML = slider_azul.value;
+
+    slider_azul.oninput = function () {
+        valor_azul.innerHTML = this.value;
+        canvas();
+    }
+
+    var slider_alfa = document.getElementById("slider_alfa");
+    var valor_alfa = document.getElementById("valor_alfa");
+    valor_alfa.innerHTML = slider_alfa.value;
+
+    slider_alfa.oninput = function () {
+        valor_alfa.innerHTML = this.value;
+        canvas();
+    }
+</script>
+
+</html>
